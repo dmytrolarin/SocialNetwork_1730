@@ -7,12 +7,12 @@
 </head>
 <body>
     <h1>Реєстрація</h1>
-    <form action="" method="post">
+    <form  method="post">
         {% csrf_token %} 
         <p style="color:red">{{error}}</p>
-        <p><input type="text" placeholder="login" name="login" required></p>
-        <p><input type="password" placeholder="password" name="password" required></p>
-        <p><input type="password" placeholder="password confirm" name="password_confirm" required></p>
+        <p><input type="text" placeholder="login" name="login" value= "{{login}}" required></p>
+        <p><input type="password" placeholder="password" name="password" value = "{{password}}" required></p>
+        <p><input type="password" placeholder="password confirm" name="password_confirm" value="{{password_confirm}}" required></p>
         <p><input type="submit" value="Реєстрація"></p>
     </form>
 
