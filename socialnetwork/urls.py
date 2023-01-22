@@ -24,4 +24,5 @@ urlpatterns = [
     path('success_reg/', show_successfull_reg, name = 'success_reg'),
     path('login/', show_login_form, name = 'login'),
     path('welcome/',show_welcome, name = 'welcome'),
+    path('logout/', user_logout, name = 'logout')
 ]

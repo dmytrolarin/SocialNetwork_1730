@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.db.utils import IntegrityError
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def show_registration_form(request):
     context = {}
@@ -64,3 +64,7 @@ def show_welcome(request):
     else:
         # якщо користувача не увійшов в систему перекидує на сторінку login 
         return redirect('login')
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')      
