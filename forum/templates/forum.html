@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Форум</h1>
+    <br><br><br>
+    <!-- перебираємо пости та відображаємо їх -->
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <p><img src="{{ post.image.url }}"></p>
+        <p>Автор: {{post.author}}</p>
+        <hr>
+    {% endfor %}
+    <!-- Створили форму для створення поста -->
+    <form method="post" enctype="multipart/form-data">
+        <h3>Створити пост</h3>
+        {% csrf_token %} 
+        <p><input type="text" placeholder="Заголовок" name="title"  required maxlength="255"></p>
+        <p><textarea name="content" cols="30" rows="10" placeholder="Контент" required style="resize: none;"></textarea></p>
+        <p><input type="file" name = 'image' required></p>
+        {% if request.user.is_authenticated %}
+            <p><input type="submit" value="Створити"></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">Увійдіть, щоб створити пост</a></p>
+        {% endif %}
+    </form>
+</body>
+</html>

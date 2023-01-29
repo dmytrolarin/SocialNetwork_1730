@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from registrationapp.views import *
+from forum.views import show_forum
+from socialnetwork.settings import DEBUG, MEDIA_URL, MEDIA_ROOT
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -24,5 +27,9 @@ urlpatterns = [
     path('success_reg/', show_successfull_reg, name = 'success_reg'),
     path('login/', show_login_form, name = 'login'),
     path('welcome/',show_welcome, name = 'welcome'),
-    path('logout/', user_logout, name = 'logout')
+    path('logout/', user_logout, name = 'logout'),
+    path('forum/', show_forum, name = 'forum')
 ]
+# Формуємо URL адреси у медіа файлі
+if DEBUG:
+    urlpatterns += static(MEDIA_URL, document_root = MEDIA_ROOT)
